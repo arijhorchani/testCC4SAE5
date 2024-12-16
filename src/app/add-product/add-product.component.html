@@ -1,0 +1,23 @@
+<form #productForm="ngForm" (ngSubmit)="onAddProduct()" novalidate>
+    <div>
+      <label>Nom :</label>
+      <input name="name" [(ngModel)]="product.name" required />
+      <div *ngIf="productForm.submitted && !product.name">Nom obligatoire</div>
+    </div>
+    <div>
+      <label>Description :</label>
+      <input name="description" [(ngModel)]="product.description" required />
+      <div *ngIf="productForm.submitted && !product.description">
+        Description obligatoire
+      </div>
+    </div>
+    <div>
+      <label>Prix :</label>
+      <input type="number" name="price" [(ngModel)]="product.price" min="0" required />
+      <div *ngIf="productForm.submitted && product.price <= 0">
+        Le prix doit être strictement positif
+      </div>
+    </div>
+    <button [disabled]="!productForm.valid" type="submit">Ajouter</button>
+  </form>
+  
